@@ -7,6 +7,10 @@ android {
     namespace 'com.example.experience'
     compileSdk 33
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.example.experience"
         minSdk 24

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Experience</string>
+    <string name="guess_the_word">Угадай слово</string>
+    <string name="txtHelpGuessTheWord">Компьютер загадал одно из следующих слов:</string>
+    <string name="txtResult">Результат</string>
+    <string name="txtEnterTheWord">Введите слово</string>
+    <string name="txt_exit_to_main_menu">Вернуться в главное меню</string>
+    <string name="txt_retry">Повторить</string>
 </resources>
