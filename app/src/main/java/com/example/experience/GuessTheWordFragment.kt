@@ -30,11 +30,13 @@ class GuessTheWordFragment : Fragment() {
         val randomWord = createRandomWord(words)
         textView.isSelected = true
         textView.text = words.joinToString(" ")
+        txtResult.text = resultArray().joinToString("")
         etEnter.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
                 if (event.action == KeyEvent.ACTION_DOWN &&
-                    keyCode == KeyEvent.KEYCODE_ENTER) {
-                    onGame(randomWord, userWord())
+                    keyCode == KeyEvent.KEYCODE_ENTER
+                ) {
+                    onGame(randomWord, userWord(), resultArray())
                     return true
                 }
                 return false
@@ -43,28 +45,25 @@ class GuessTheWordFragment : Fragment() {
         })
     }
 
-    private fun onGame(guessedWordArray: CharArray, playerWordArray: CharArray) = with(binding) {
-        val resultArray = CharArray(15)
-        for (i in resultArray.indices) {
-            resultArray[i] = '#'
-        }
-        txtResult.text = resultArray.joinToString("")
-        txtHelp.text = guessedWordArray.joinToString("")
-
+    private fun onGame(guessedWordArray: CharArray, playerWordArray: CharArray, resultArray: CharArray) = with(binding) {
+        txtHelp.text = guessedWordArray.joinToString("") //FIXME Delete
         if (playerWordArray.contentEquals(guessedWordArray)) {
             openFragment(SuccessGameFragment.newInstance())
-
         } else {
-            for (i in guessedWordArray.indices) {
-                if (i >= playerWordArray.size) {
-                    break
-                }
-                if (playerWordArray[i] == guessedWordArray[i]) {
-                    resultArray[i] = guessedWordArray[i]
-                    txtResult.text = resultArray.joinToString("")
-                }
+            txtResult.text = play(guessedWordArray, playerWordArray, resultArray)
+        }
+    }
+
+    private fun play(guessedWordArray: CharArray, playerWordArray: CharArray, resultArray: CharArray) = with(binding) {
+        for (i in guessedWordArray.indices) {
+            if (i >= playerWordArray.size) {
+                break
+            }
+            if (playerWordArray[i] == guessedWordArray[i]) {
+                resultArray[i] = guessedWordArray[i]
             }
         }
+        return@with resultArray.joinToString("")
     }
 
     private fun createListWords(): List<String> {
@@ -102,10 +101,12 @@ class GuessTheWordFragment : Fragment() {
         return words[guessedWord].toCharArray()
     }
 
-    private fun userWord() : CharArray = with(binding) {
+    private fun userWord(): CharArray = with(binding) {
         val playerWord = etEnter.text.toString()
         return@with playerWord.toCharArray()
     }
+
+    private fun resultArray() = Array (15) { '#' }.toCharArray()
 
     private fun openFragment(fragment: Fragment) {
         val manager = activity?.supportFragmentManager
