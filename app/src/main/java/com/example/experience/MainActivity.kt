@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, GuessTheWordFragment.newInstance()) //FIXME поменять на основной фрагмент
+                .replace(R.id.fragment_container, MainScreenFragment.newInstance()) //FIXME поменять на основной фрагмент
                 .commit()
         }
     }

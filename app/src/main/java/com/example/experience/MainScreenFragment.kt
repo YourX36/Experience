@@ -24,6 +24,7 @@ class MainScreenFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
         buttonGuessTheWord.setOnClickListener { openFragment(GuessTheWordFragment.newInstance()) }
+        buttonTicTacToe.setOnClickListener { openFragment(TicTacToeFragment.newInstance()) }
     }
 
     override fun onDestroy() {

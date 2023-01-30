@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gameField"
+    android:gravity="center">
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h0_v0"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/h0_v1"
+        app:layout_constraintBottom_toTopOf="@+id/h1_v0"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h0_v1"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintEnd_toStartOf="@+id/h0_v2"
+        app:layout_constraintStart_toEndOf="@+id/h0_v0"
+        app:layout_constraintBottom_toTopOf="@+id/h1_v1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h0_v2"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/h0_v1"
+        app:layout_constraintBottom_toTopOf="@id/h1_v2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h1_v0"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintBottom_toTopOf="@id/h2_v0"
+        app:layout_constraintEnd_toStartOf="@id/h1_v1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/h0_v0" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h1_v1"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintTop_toBottomOf="@+id/h0_v1"
+        app:layout_constraintStart_toEndOf="@+id/h1_v0"
+        app:layout_constraintEnd_toStartOf="@id/h1_v2"
+        app:layout_constraintBottom_toTopOf="@id/h2_v1"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h1_v2"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/h1_v1"
+        app:layout_constraintTop_toBottomOf="@+id/h0_v2"
+        app:layout_constraintBottom_toTopOf="@+id/h2_v2"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h2_v0"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/h1_v0"
+        app:layout_constraintEnd_toStartOf="@+id/h2_v1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h2_v1"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintStart_toEndOf="@+id/h2_v0"
+        app:layout_constraintTop_toBottomOf="@+id/h1_v1"
+        app:layout_constraintEnd_toStartOf="@+id/h2_v2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/h2_v2"
+        android:layout_width="@dimen/btn_tic_tac_toe"
+        android:layout_height="@dimen/btn_tic_tac_toe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/h2_v1"
+        app:layout_constraintTop_toBottomOf="@+id/h1_v2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

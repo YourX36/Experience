@@ -6,4 +6,5 @@
     <string name="txtEnterTheWord">Введите слово</string>
     <string name="txt_exit_to_main_menu">Вернуться в главное меню</string>
     <string name="txt_retry">Повторить</string>
+    <string name="tic_tac_toe">Крестики-нолики</string>
 </resources>

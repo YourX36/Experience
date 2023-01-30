@@ -14,5 +14,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/guess_the_word"
         />
+    <Button
+        android:id="@+id/button_tic_tac_toe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/button_guess_the_word"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/tic_tac_toe"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
