@@ -25,58 +25,57 @@ class TicTacToeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
         ticTacToe()
+    }
 
-
+    private enum class Players() {
+        FirstPlayer,
+        SecondPlayer
     }
 
     private fun ticTacToe() = with(binding) {
-        var activePlayer = 1
+        var activePlayer = Players.FirstPlayer
         h0V0.setOnClickListener {
-            turn(h0V0, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h0V0, activePlayer)
         }
         h0V1.setOnClickListener {
-            turn(h0V1, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h0V1, activePlayer)
         }
         h0V2.setOnClickListener {
-            turn(h0V2, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h0V2, activePlayer)
         }
         h1V0.setOnClickListener {
-            turn(h1V0, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h1V0, activePlayer)
         }
         h1V1.setOnClickListener {
-            turn(h1V1, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h1V1, activePlayer)
         }
         h1V2.setOnClickListener {
-            turn(h1V2, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h1V2, activePlayer)
         }
         h2V0.setOnClickListener {
-            turn(h2V0, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h2V0, activePlayer)
         }
         h2V1.setOnClickListener {
-            turn(h2V1, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h2V1, activePlayer)
         }
         h2V2.setOnClickListener {
-            turn(h2V2, activePlayer)
-            activePlayer = if (activePlayer == 1) 2 else 1
+            activePlayer = turn(h2V2, activePlayer)
         }
     }
 
-    private fun turn(view: androidx.appcompat.widget.AppCompatImageButton, activePlayer: Int)  {
-        if (view.isClickable && activePlayer == 1) {
+    private fun turn(view: androidx.appcompat.widget.AppCompatImageButton, activePlayer: Players) : Players  {
+        if (view.isClickable && activePlayer == Players.FirstPlayer) {
             view.isClickable = false
             view.setImageResource(R.drawable.ic_x)
-        } else if (view.isClickable && activePlayer == 2)
+            return Players.SecondPlayer
+
+        } else if (view.isClickable && activePlayer == Players.SecondPlayer)
         {
             view.isClickable = false
             view.setImageResource(R.drawable.ic_o)
+            return Players.FirstPlayer
+        } else {
+            return Players.FirstPlayer
         }
     }
 
