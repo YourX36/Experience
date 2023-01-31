@@ -5,6 +5,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.experience.databinding.FragmentGuessTheWordBinding
 import kotlin.random.Random
@@ -110,6 +111,10 @@ class GuessTheWordFragment : Fragment() {
 
     private fun openFragment(fragment: Fragment) {
         val manager = activity?.supportFragmentManager
+        val bundle = bundleOf(
+            SCREEN to GUESS_THE_WORD
+        )
+        fragment.arguments = bundle
         manager?.let {
             manager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
@@ -125,5 +130,7 @@ class GuessTheWordFragment : Fragment() {
 
     companion object {
         fun newInstance() = GuessTheWordFragment()
+        private const val SCREEN = "SCREEN"
+        private const val GUESS_THE_WORD = "GUESS_THE_WORD"
     }
 }

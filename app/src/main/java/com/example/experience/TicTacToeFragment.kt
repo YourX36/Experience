@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.experience.databinding.FragmentTicTacToeBinding
 
@@ -63,20 +64,85 @@ class TicTacToeFragment : Fragment() {
         }
     }
 
-    private fun turn(view: androidx.appcompat.widget.AppCompatImageButton, activePlayer: Players) : Players  {
+    private fun turn(
+        view: androidx.appcompat.widget.AppCompatImageButton,
+        activePlayer: Players
+    ): Players {
         if (view.isClickable && activePlayer == Players.FirstPlayer) {
             view.isClickable = false
             view.setImageResource(R.drawable.ic_x)
+            view.tag = FIRST_PLAYER_TAG
+            checkToWin()
             return Players.SecondPlayer
 
-        } else if (view.isClickable && activePlayer == Players.SecondPlayer)
-        {
+        } else if (view.isClickable && activePlayer == Players.SecondPlayer) {
             view.isClickable = false
             view.setImageResource(R.drawable.ic_o)
+            view.tag = SECOND_PLAYER_TAG
+            checkToWin()
             return Players.FirstPlayer
         } else {
             return Players.FirstPlayer
         }
+    }
+
+    private fun checkToWin() = with(binding) {
+        if (h0V0.tag == FIRST_PLAYER_TAG && h0V1.tag == FIRST_PLAYER_TAG && h0V2.tag == FIRST_PLAYER_TAG) {
+            playerWin(FIRST_PLAYER_TAG)
+        }
+        if (h0V0.tag == SECOND_PLAYER_TAG && h0V1.tag == SECOND_PLAYER_TAG && h0V2.tag == SECOND_PLAYER_TAG) {
+            playerWin(SECOND_PLAYER_TAG)
+        }
+        if (h1V0.tag == FIRST_PLAYER_TAG && h1V1.tag == FIRST_PLAYER_TAG && h1V2.tag == FIRST_PLAYER_TAG) {
+            playerWin(FIRST_PLAYER_TAG)
+        }
+        if (h1V0.tag == SECOND_PLAYER_TAG && h1V1.tag == SECOND_PLAYER_TAG && h1V2.tag == SECOND_PLAYER_TAG) {
+            playerWin(SECOND_PLAYER_TAG)
+        }
+        if (h2V0.tag == FIRST_PLAYER_TAG && h2V1.tag == FIRST_PLAYER_TAG && h2V2.tag == FIRST_PLAYER_TAG) {
+            playerWin(FIRST_PLAYER_TAG)
+        }
+        if (h2V0.tag == SECOND_PLAYER_TAG && h2V1.tag == SECOND_PLAYER_TAG && h2V2.tag == SECOND_PLAYER_TAG) {
+            playerWin(SECOND_PLAYER_TAG)
+        }
+        if (h0V0.tag == FIRST_PLAYER_TAG && h1V0.tag == FIRST_PLAYER_TAG && h2V0.tag == FIRST_PLAYER_TAG) {
+            playerWin(FIRST_PLAYER_TAG)
+        }
+        if (h0V0.tag == SECOND_PLAYER_TAG && h1V0.tag == SECOND_PLAYER_TAG && h2V0.tag == SECOND_PLAYER_TAG) {
+            playerWin(SECOND_PLAYER_TAG)
+        }
+        if (h0V1.tag == FIRST_PLAYER_TAG && h1V1.tag == FIRST_PLAYER_TAG && h2V1.tag == FIRST_PLAYER_TAG) {
+            playerWin(FIRST_PLAYER_TAG)
+        }
+        if (h0V1.tag == SECOND_PLAYER_TAG && h1V1.tag == SECOND_PLAYER_TAG && h2V1.tag == SECOND_PLAYER_TAG) {
+            playerWin(SECOND_PLAYER_TAG)
+        }
+        if (h0V2.tag == FIRST_PLAYER_TAG && h1V2.tag == FIRST_PLAYER_TAG && h2V2.tag == FIRST_PLAYER_TAG) {
+            playerWin(FIRST_PLAYER_TAG)
+        }
+        if (h0V2.tag == SECOND_PLAYER_TAG && h1V2.tag == SECOND_PLAYER_TAG && h2V2.tag == SECOND_PLAYER_TAG) {
+            playerWin(SECOND_PLAYER_TAG)
+        }
+        if (h0V0.tag == FIRST_PLAYER_TAG && h1V1.tag == FIRST_PLAYER_TAG && h2V2.tag == FIRST_PLAYER_TAG) {
+            playerWin(FIRST_PLAYER_TAG)
+        }
+        if (h0V0.tag == SECOND_PLAYER_TAG && h1V1.tag == SECOND_PLAYER_TAG && h2V2.tag == SECOND_PLAYER_TAG) {
+            playerWin(SECOND_PLAYER_TAG)
+        }
+        if (h2V0.tag == FIRST_PLAYER_TAG && h1V1.tag == FIRST_PLAYER_TAG && h0V2.tag == FIRST_PLAYER_TAG) {
+            playerWin(FIRST_PLAYER_TAG)
+        }
+        if (h2V0.tag == SECOND_PLAYER_TAG && h1V1.tag == SECOND_PLAYER_TAG && h0V2.tag == SECOND_PLAYER_TAG) {
+            playerWin(SECOND_PLAYER_TAG)
+        }
+    }
+
+    private fun playerWin(tag: Char) {
+        val bundle = bundleOf(
+            WINNER to tag,
+            SCREEN to TIC_TAC_TOE
+        )
+        openFragment(SuccessGameFragment.newInstance(), bundle)
     }
 
 
@@ -85,8 +151,9 @@ class TicTacToeFragment : Fragment() {
         _binding = null
     }
 
-    private fun openFragment(fragment: Fragment) {
+    private fun openFragment(fragment: Fragment, bundle: Bundle) {
         val manager = activity?.supportFragmentManager
+        fragment.arguments = bundle
         manager?.let {
             manager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
@@ -97,5 +164,10 @@ class TicTacToeFragment : Fragment() {
 
     companion object {
         fun newInstance() = TicTacToeFragment()
+        private const val FIRST_PLAYER_TAG = 'X'
+        private const val SECOND_PLAYER_TAG = 'O'
+        private const val WINNER = "WINNER"
+        private const val SCREEN = "SCREEN"
+        private const val TIC_TAC_TOE = "TIC_TAC_TOE"
     }
 }
